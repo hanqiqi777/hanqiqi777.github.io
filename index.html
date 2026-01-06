@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍 | 高宇圻</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #166088;
+            --accent: #17a2b8;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+        }
+
+        /* 主体内容样式 */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        /* 关于我 */
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* 技能部分 */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--accent);
+            border-radius: 5px;
+        }
+
+        /* 经历部分 */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        .timeline-date {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* 兴趣部分 */
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .interest-item {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .interest-item:hover {
+            background-color: #e9ecef;
+            transform: scale(1.05);
+        }
+
+        .interest-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .interests {
+                gap: 1rem;
+            }
+
+            .interest-item {
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 1.2rem;
+            }
+
+            .interest-item {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 头部区域 -->
+<header>
+    <div class="container header-content">
+        <img src="202304061680747621605719.jpg" alt="个人头像" class="avatar">
+        <h1>高宇圻</h1>
+        <p class="tagline">前端开发工程师 | UI/UX设计师 | 技术爱好者</p>
+        <p>专注于创造美观、高效、用户友好的数字体验</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>gyq1111@example.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+86 138-0000-0000</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>中国，辽宁 </span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 主体内容 -->
+<main class="container">
+    <!-- 关于我部分 -->
+    <section class="section">
+        <h2>关于我</h2>
+        <div class="about-text">
+            <p>我是一名充满热情的前端开发工程师，拥有2年半的Web开发经验。我热衷于将复杂的设计转化为直观、易用的界面，并致力于通过代码创造卓越的用户体验。</p>
+            <p>在过去的职业生涯中，我参与了多个大型项目的开发，从电商平台到企业级管理系统，积累了丰富的实战经验。我始终关注新技术的发展，并乐于将最佳实践应用到项目中。</p>
+            <p>除了编程，我也热衷于分享知识，曾在多个技术社区发表文章，并定期在团队内部进行技术培训。我相信持续学习和团队合作是个人与项目成功的关键。</p>
+        </div>
+    </section>
+
+    <!-- 技能部分 -->
+    <section class="section">
+        <h2>专业技能</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>前端技术</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML/CSS</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript/TypeScript</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>React/Vue.js</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 88%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>设计工具</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Figma/Sketch</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Adobe Creative Suite</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX设计</span>
+                        <span>82%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 82%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>其他技能</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Git/版本控制</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>团队协作</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>项目规划</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 经历部分 -->
+    <section class="section">
+        <h2>工作经历</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2020年3月 - 至今</div>
+                <div class="timeline-title">高级前端开发工程师 | 字节跳动</div>
+                <p>负责抖音电商平台的前端架构设计和核心模块开发，带领5人团队完成多个大型项目。引入微前端架构，提升项目可维护性和开发效率。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2017年8月 - 2020年2月</div>
+                <div class="timeline-title">前端开发工程师 | 阿里巴巴</div>
+                <p>参与淘宝商家后台系统的重构，使用Vue.js实现组件化开发，优化页面加载速度40%。主导开发了多个可复用组件库。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2015年7月 - 2017年7月</div>
+                <div class="timeline-title">Web开发工程师 | 腾讯</div>
+                <p>负责腾讯云控制台的前端开发，使用React技术栈构建用户界面。参与设计了响应式布局系统，确保在多设备上的良好体验。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 兴趣爱好 -->
+    <section class="section">
+        <h2>兴趣爱好</h2>
+        <div class="interests">
+            <div class="interest-item">
+                <i class="fas fa-laptop-code"></i>
+                <h3>编程</h3>
+                <p>探索新技术，参与开源项目</p>
+            </div>
+            <div class="interest-item">
+                <i class="fas fa-book"></i>
+                <h3>阅读</h3>
+                <p>技术书籍与科幻小说</p>
+            </div>
+            <div class="interest-item">
+                <i class="fas fa-hiking"></i>
+                <h3>徒步</h3>
+                <p>探索自然，放松身心</p>
+            </div>
+            <div class="interest-item">
+                <i class="fas fa-music"></i>
+                <h3>音乐</h3>
+                <p>弹奏吉他，欣赏古典乐</p>
+            </div>
+            <div class="interest-item">
+                <i class="fas fa-camera"></i>
+                <h3>摄影</h3>
+                <p>捕捉生活中的美好瞬间</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- 页脚 -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="知乎"><i class="fab fa-zhihu"></i></a>
+            <a href="#" title="个人博客"><i class="fas fa-blog"></i></a>
+        </div>
+        <p class="copyright">© 2026 高宇圻. 保留所有权利.</p>
+        <p class="copyright">最后更新: 2026年1月</p>
+    </div>
+</footer>
+
+<script>
+    // 简单的交互效果
+    document.addEventListener('DOMContentLoaded', function() {
+        // 为技能条添加动画
+        const skillBars = document.querySelectorAll('.skill-level');
+
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBar = entry.target;
+                    skillBar.style.transition = 'width 1.5s ease-in-out';
+                    skillBar.style.width = skillBar.style.width;
+                }
+            });
+        }, observerOptions);
+
+        skillBars.forEach(bar => observer.observe(bar));
+
+        // 为时间线项目添加动画
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        timelineItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, 300 + (index * 200));
+        });
+    });
+</script>
+</body>
+</html>
